@@ -19,9 +19,9 @@ const taskSlice = createSlice({
       if (taskToDelete) {
         state.deletedTask.push(taskToDelete)
         state.activeTask = state.activeTask.filter((task) => task.id !== action.payload)
+        taskToDelete.isDeleted = true
         localStorage.setItem("activeTask", JSON.stringify(state.activeTask))
         localStorage.setItem("deletedTask", JSON.stringify(state.deletedTask))
-        taskToDelete.isDeleted = true
       }
     },
     removeTask: (state, action) => {
