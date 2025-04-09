@@ -30,7 +30,7 @@ const TaskInput = ({isEditing = false, task}) => {
 
   const handleCancelEdit = (task) => {
     dispatch(cancelEdit(task.id))
-    console.log(task.id);
+
   }
 
   const handlerChangeText = (e) => {
