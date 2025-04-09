@@ -42,7 +42,6 @@ const taskSlice = createSlice({
     editTask: (state, action) => {
       const {id, taskText} = action.payload;
       const task = state.activeTask.find((task) => task.id === id)
-      console.log(id);
       if (task) {
         task.text = taskText
         task.isEdit = false
