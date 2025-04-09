@@ -3,7 +3,7 @@
   width: 800px;
   margin: auto;
   align-items: center;
-  gap: 20px
+  gap: 8px
 }
 
 .text {
@@ -17,11 +17,14 @@
 }
 
 .item:hover .buttons {
-  display: flex;
-  gap: 8px;
+  visibility: visible
 }
 
 .buttons {
-  display: none;
+  visibility: hidden;
+  display: flex;
+  gap: 8px;
+  
 }
+
 

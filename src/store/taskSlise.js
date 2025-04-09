@@ -31,15 +31,26 @@ const taskSlice = createSlice({
         localStorage.setItem("deletedTask", JSON.stringify(state.deletedTask))
       }
     },
+    startEdit: (state, action) => {
+      const taskToEdit = state.activeTask.find((task) => task.id === action.payload)
+      taskToEdit.isEdit = true
+    },
+    cancelEdit: (state, action) => {
+      const taskToEdit = state.activeTask.find((task) => task.id === action.payload)
+      taskToEdit.isEdit = false
+    },
     editTask: (state, action) => {
-      const {id, newText} = action.payload;
+      const {id, taskText} = action.payload;
       const task = state.activeTask.find((task) => task.id === id)
+      console.log(id);
       if (task) {
-        task.text = newText
+        task.text = taskText
+        task.isEdit = false
+        localStorage.setItem("activeTask", JSON.stringify(state.activeTask))
       }
     }
   }
 })
 
-export const { addTask, deleteTask, removeTask, editTask } = taskSlice.actions;
+export const { addTask, deleteTask, removeTask, editTask, startEdit, cancelEdit } = taskSlice.actions;
 export default taskSlice.reducer;

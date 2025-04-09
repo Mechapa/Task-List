@@ -1,21 +1,36 @@
 import { useState } from "react";
 import { useDispatch } from 'react-redux';
-import { addTask } from "../store/taskSlise";
+import { addTask, cancelEdit, editTask } from "../store/taskSlise";
 import styles from './TaskInput.module.css'
 
-const TaskInput = () => {
+const TaskInput = ({isEditing = false, task}) => {
   const [taskText, setTaskText] = useState('')
   const dispatch = useDispatch()
 
-  const handleAddTask = () => {
-    if (taskText) {
-      const newTask = {
-        id: Date.now(),
-        text: taskText,
-      };
-      dispatch(addTask(newTask));
-      setTaskText('')
+  const handleSubmitTask = () => {
+    if (isEditing) {
+      handleChangeTask(task);
+    } else {
+      if (taskText) {
+        const newTask = {
+          id: Date.now(),
+          text: taskText,
+        };
+        dispatch(addTask(newTask));
+        setTaskText('')
+      }
     }
+  }
+
+  const handleChangeTask = (task) => {
+    if (taskText) {
+      dispatch(editTask({id: task.id, taskText: taskText}))
+    }
+  };
+
+  const handleCancelEdit = (task) => {
+    dispatch(cancelEdit(task.id))
+    console.log(task.id);
   }
 
   const handlerChangeText = (e) => {
@@ -29,9 +44,14 @@ const TaskInput = () => {
         type="text"
         value={taskText}
         onChange={handlerChangeText}
-        placeholder="Введите текст задачи"
+        placeholder={isEditing ? "Изменить задачу" : "Введите текст задачи"}
       />
-      <button className={styles.button} onClick={handleAddTask}>Добавить</button>
+      <button className={styles.button} onClick={handleSubmitTask}>
+        {isEditing ? "Сохранить" : "Добавить"}
+      </button>
+      {isEditing && <button className={styles.button} onClick={() => handleCancelEdit(task)}>
+        Отменить
+      </button>}
     </div>
    );
 }
