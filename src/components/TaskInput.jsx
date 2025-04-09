@@ -1,7 +1,8 @@
 import { useState } from "react";
 import { useDispatch } from 'react-redux';
 import { addTask } from "../store/taskSlise";
-import './TaskInput.css'
+import styles from './TaskInput.module.css'
+
 const TaskInput = () => {
   const [taskText, setTaskText] = useState('')
   const dispatch = useDispatch()
@@ -16,16 +17,21 @@ const TaskInput = () => {
       setTaskText('')
     }
   }
+
+  const handlerChangeText = (e) => {
+    setTaskText(e.target.value)
+  }
+
   return ( 
-    <div className="task-input">
+    <div className={styles.input}>
       <input
-        className="taskInput"
+        className={styles.field}
         type="text"
         value={taskText}
-        onChange={(e) => setTaskText(e.target.value)}
+        onChange={handlerChangeText}
         placeholder="Введите текст задачи"
       />
-      <button className="taskInputButton" onClick={handleAddTask}>Добавить</button>
+      <button className={styles.button} onClick={handleAddTask}>Добавить</button>
     </div>
    );
 }

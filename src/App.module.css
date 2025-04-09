@@ -1,0 +1,12 @@
+.link {
+  font-size: 32px;
+  color: blue;
+  text-decoration: none;
+}
+
+
+.nav {
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+}

@@ -1,4 +1,4 @@
-.taskItem {
+.item {
   display: flex;
   width: 800px;
   margin: auto;
@@ -6,17 +6,22 @@
   gap: 20px
 }
 
-.taskText {
+.text {
   width: 200px;
   text-align: start;
 }
 
-.taskButton {
+.button {
   width: 120px;
   height: 40px;
 }
 
-.taskButtons {
+.item:hover .buttons {
   display: flex;
-  gap: 10px;
+  gap: 8px;
 }
+
+.buttons {
+  display: none;
+}
+

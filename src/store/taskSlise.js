@@ -5,6 +5,7 @@ const initialState = {
   activeTask: JSON.parse(localStorage.getItem("activeTask")) || [],
   deletedTask: JSON.parse(localStorage.getItem('deletedTask')) || []
 }
+
 const taskSlice = createSlice({
   initialState,
   name: "toDo",
@@ -14,18 +15,17 @@ const taskSlice = createSlice({
       localStorage.setItem("activeTask", JSON.stringify(state.activeTask))
     },
     deleteTask: (state, action) => {
-      let taskToDelete = state.activeTask.find((task) => task.id === action.payload)
+      const taskToDelete = state.activeTask.find((task) => task.id === action.payload)
       if (taskToDelete) {
         state.deletedTask.push(taskToDelete)
         state.activeTask = state.activeTask.filter((task) => task.id !== action.payload)
         localStorage.setItem("activeTask", JSON.stringify(state.activeTask))
         localStorage.setItem("deletedTask", JSON.stringify(state.deletedTask))
         taskToDelete.isDeleted = true
-        // console.log(taskToDelete.isDeleted);
       }
     },
     removeTask: (state, action) => {
-      let taskToDelete = state.deletedTask.find((task) => task.id === action.payload)
+      const taskToDelete = state.deletedTask.find((task) => task.id === action.payload)
       if (taskToDelete) {
         state.deletedTask = state.deletedTask.filter((task) => task.id !== action.payload)
         localStorage.setItem("deletedTask", JSON.stringify(state.deletedTask))
@@ -33,8 +33,6 @@ const taskSlice = createSlice({
     },
     editTask: (state, action) => {
       const {id, newText} = action.payload;
-      // console.log(newText);
-      // console.log(id);
       const task = state.activeTask.find((task) => task.id === id)
       if (task) {
         task.text = newText

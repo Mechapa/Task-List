@@ -1,13 +1,14 @@
 import { useSelector } from "react-redux";
 import TaskItem from "../components/TaskItem";
+import styles from "./DeletedTaskPage.module.css"
 
 const DeletedTaskPage = () => {
-  const deletedTask = useSelector((state) => state.tasks.deletedTask)
+  const deletedTasks = useSelector((state) => state.tasks.deletedTask)
   return ( 
     <>
       <div>
-        <h1>Удаленные задачи</h1>
-        {deletedTask.map((task) => (
+        <h1 className={styles.title}>Удаленные задачи</h1>
+        {deletedTasks.map((task) => (
           <TaskItem
           key={task.id}
           task={task}

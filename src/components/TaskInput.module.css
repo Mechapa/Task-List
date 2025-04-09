@@ -1,14 +1,14 @@
-.task-input {
+.input {
   display: flex;
-  gap: 10px;
+  gap: 8px;
   justify-content: center
 }
 
-.taskInput {
+.field {
   width: 200px;
   height: 40px;
 }
 
-.taskInputButton {
-  width: 100px;
+.button {
+  width: 120px;
 }
