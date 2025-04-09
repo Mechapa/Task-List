@@ -1,0 +1,22 @@
+.taskItem {
+  display: flex;
+  width: 800px;
+  margin: auto;
+  align-items: center;
+  gap: 20px
+}
+
+.taskText {
+  width: 200px;
+  text-align: start;
+}
+
+.taskButton {
+  width: 120px;
+  height: 40px;
+}
+
+.taskButtons {
+  display: flex;
+  gap: 10px;
+}
