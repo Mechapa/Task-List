@@ -1,7 +1,7 @@
 import {useSelector } from "react-redux";
 import TaskInput from "../components/TaskInput";
 import TaskItem from "../components/TaskItem";
-import styles from "./TaskPage.module.css"
+import styles from "./TaskPage.module.css";
 
 const TaskPage = () => {
   const activeTasks = useSelector((state) => state.tasks.activeTask);
@@ -18,6 +18,6 @@ const TaskPage = () => {
       )}
     </div>
   );
-}
+};
 
 export default TaskPage;

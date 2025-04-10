@@ -1,7 +1,7 @@
-import styles from './App.module.css'
-import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
-import TaskPage from './pages/TaskPage';
-import DeletedTaskPage from './pages/DeletedTaskPage';
+import styles from "./App.module.css";
+import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
+import TaskPage from "./pages/TaskPage";
+import DeletedTaskPage from "./pages/DeletedTaskPage";
 function App() {
 
   return (
@@ -17,7 +17,7 @@ function App() {
         </Routes>
       </Router>
     </>
-  )
+  );
 }
 
-export default App
+export default App;

@@ -1,6 +1,6 @@
 import { useSelector } from "react-redux";
 import TaskItem from "../components/TaskItem";
-import styles from "./DeletedTaskPage.module.css"
+import styles from "./DeletedTaskPage.module.css";
 
 const DeletedTaskPage = () => {
   const deletedTasks = useSelector((state) => state.tasks.deletedTask);
@@ -18,6 +18,6 @@ const DeletedTaskPage = () => {
       </div>
     </>
   );
-}
+};
 
 export default DeletedTaskPage;

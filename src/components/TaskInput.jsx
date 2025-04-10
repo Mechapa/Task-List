@@ -1,11 +1,11 @@
 import { useState } from "react";
-import { useDispatch } from 'react-redux';
+import { useDispatch } from "react-redux";
 import { addTask, cancelEdit, editTask } from "../store/taskSlise";
-import styles from './TaskInput.module.css'
+import styles from "./TaskInput.module.css";
 
 const TaskInput = ({isEditing = false, task}) => {
-  const [taskText, setTaskText] = useState('')
-  const dispatch = useDispatch()
+  const [taskText, setTaskText] = useState("");
+  const dispatch = useDispatch();
 
   const handleSubmitTask = () => {
     if (isEditing) {
@@ -17,25 +17,25 @@ const TaskInput = ({isEditing = false, task}) => {
           text: taskText,
         };
         dispatch(addTask(newTask));
-        setTaskText('')
+        setTaskText("");
       }
     }
-  }
+  };
 
   const handleChangeTask = (task) => {
     if (taskText) {
-      dispatch(editTask({id: task.id, taskText: taskText}))
+      dispatch(editTask({id: task.id, taskText: taskText}));
     }
   };
 
   const handleCancelEdit = (task) => {
-    dispatch(cancelEdit(task.id))
+    dispatch(cancelEdit(task.id));
     console.log(task.id);
-  }
+  };
 
   const handlerChangeText = (e) => {
-    setTaskText(e.target.value)
-  }
+    setTaskText(e.target.value);
+  };
 
   return (
     <div className={styles.input}>
@@ -56,6 +56,6 @@ const TaskInput = ({isEditing = false, task}) => {
       )}
     </div>
   );
-}
+};
 
 export default TaskInput;

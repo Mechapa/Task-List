@@ -1,35 +1,41 @@
-import js from '@eslint/js'
-import globals from 'globals'
-import reactHooks from 'eslint-plugin-react-hooks'
-import reactRefresh from 'eslint-plugin-react-refresh'
-import react from 'eslint-plugin-react'
+import js from "@eslint/js";
+import globals from "globals";
+import reactHooks from "eslint-plugin-react-hooks";
+import reactRefresh from "eslint-plugin-react-refresh";
+import react from "eslint-plugin-react";
+import stylistic from "@stylistic/eslint-plugin";
+import stylisticJs from "@stylistic/eslint-plugin-js";
 
 export default [
-  { ignores: ['dist'] },
+  { ignores: ["dist"] },
   {
-    files: ['**/*.{js,jsx}'],
+    files: ["**/*.{js,jsx}"],
     languageOptions: {
       ecmaVersion: 2020,
       globals: globals.browser,
       parserOptions: {
-        ecmaVersion: 'latest',
+        ecmaVersion: "latest",
         ecmaFeatures: { jsx: true },
-        sourceType: 'module',
+        sourceType: "module",
       },
     },
     plugins: {
-      'react': react,
-      'react-hooks': reactHooks,
-      'react-refresh': reactRefresh,
+      "react": react,
+      "react-hooks": reactHooks,
+      "react-refresh": reactRefresh,
+      "@stylistic": stylistic,
+      "@stylistic/js": stylisticJs
     },
     rules: {
       ...js.configs.recommended.rules,
       ...reactHooks.configs.recommended.rules,
-      'no-unused-vars': ['error', { varsIgnorePattern: '^[A-Z_]' }],
-      'react-refresh/only-export-components': [
-        'warn',
+      "no-unused-vars": ["error", { varsIgnorePattern: "^[A-Z_]" }],
+      "react-refresh/only-export-components": [
+        "warn",
         { allowConstantExport: true },
       ],
+      "@stylistic/jsx-quotes": ["error", "prefer-double"],
+      "@stylistic/js/quotes":["error", "double"],
       "no-multi-spaces": ["warn"],
       "no-trailing-spaces": "error",
       "no-whitespace-before-property": "error",
@@ -43,7 +49,6 @@ export default [
         "ignoreStrings": true,
         "ignoreTemplateLiterals": true
       }],
-      "jsx-quotes": ["error", "prefer-double"],
       "react/jsx-closing-bracket-location": [
         "error",
         "line-aligned"
@@ -85,6 +90,30 @@ export default [
           "locale": "auto"
         }
       ],
+      "object-curly-newline": [
+        "error",
+        {
+          "ImportDeclaration": {
+            "multiline": true
+          },
+          "ObjectExpression": {
+            "multiline": true,
+            "minProperties": 3,
+            "consistent": true
+          },
+          "ObjectPattern": {
+            "multiline": true,
+          }
+        }
+      ],
+      "template-curly-spacing": [
+        "error",
+        "never"
+      ],
+      "semi-spacing": "warn",
+
+      "curly": ["error", "all"],
+
       "react/jsx-tag-spacing": [
         "warn",
         {
@@ -109,6 +138,20 @@ export default [
           "html": true
         }
       ],
+      "@stylistic/semi": ["warn"],
+      "@stylistic/member-delimiter-style": [
+        "warn",
+        {
+          "multiline": {
+            "delimiter": "semi",
+            "requireLast": true
+          },
+          "singleline": {
+            "delimiter": "semi",
+            "requireLast": false
+          }
+        }
+      ],
     },
   },
-]
+];

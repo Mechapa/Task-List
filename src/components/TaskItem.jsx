@@ -1,18 +1,18 @@
-import React from 'react';
-import { useDispatch } from 'react-redux';
-import { deleteTask, removeTask, startEdit } from '../store/taskSlise';
-import styles from './TaskItem.module.css'
-import TaskInput from './TaskInput';
+import React from "react";
+import { useDispatch } from "react-redux";
+import { deleteTask, removeTask, startEdit } from "../store/taskSlise";
+import styles from "./TaskItem.module.css";
+import TaskInput from "./TaskInput";
 
 const TaskItem = ({task}) => {
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
   const handleDeleteTask = (task) => {
-    task.isDeleted ? dispatch(removeTask(task.id)) : dispatch(deleteTask(task.id))
-  }
+    task.isDeleted ? dispatch(removeTask(task.id)) : dispatch(deleteTask(task.id));
+  };
 
   const handleEditTask = (task) => {
-    dispatch(startEdit(task.id))
-  }
+    dispatch(startEdit(task.id));
+  };
 
   return (
     <div className={styles.item}>
@@ -38,6 +38,6 @@ const TaskItem = ({task}) => {
       )}
     </div>
   );
-}
+};
 
 export default TaskItem;
