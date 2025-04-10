@@ -12,8 +12,8 @@ function App() {
           <Link className={styles.link} to="/deleted">Удаленные задачи</Link>
         </nav>
         <Routes>
-          <Route path="/" element={<TaskPage/>}></Route>
-          <Route path="/deleted" element={<DeletedTaskPage/>}></Route>
+          <Route element={<TaskPage />} path="/" />
+          <Route element={<DeletedTaskPage />} path="/deleted" />
         </Routes>
       </Router>
     </>

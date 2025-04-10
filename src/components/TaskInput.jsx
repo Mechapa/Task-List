@@ -37,23 +37,25 @@ const TaskInput = ({isEditing = false, task}) => {
     setTaskText(e.target.value)
   }
 
-  return ( 
+  return (
     <div className={styles.input}>
       <input
         className={styles.field}
+        placeholder={isEditing ? "Изменить задачу" : "Введите текст задачи"}
         type="text"
         value={taskText}
         onChange={handlerChangeText}
-        placeholder={isEditing ? "Изменить задачу" : "Введите текст задачи"}
       />
       <button className={styles.button} onClick={handleSubmitTask}>
         {isEditing ? "Сохранить" : "Добавить"}
       </button>
-      {isEditing && <button className={styles.button} onClick={() => handleCancelEdit(task)}>
+      {isEditing && (
+        <button className={styles.button} onClick={() => handleCancelEdit(task)}>
         Отменить
-      </button>}
+        </button>
+      )}
     </div>
-   );
+  );
 }
- 
+
 export default TaskInput;

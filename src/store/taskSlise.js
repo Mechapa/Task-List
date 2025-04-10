@@ -1,5 +1,4 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { act } from 'react';
 
 const initialState = {
   activeTask: JSON.parse(localStorage.getItem("activeTask")) || [],
@@ -33,7 +32,9 @@ const taskSlice = createSlice({
     },
     startEdit: (state, action) => {
       const taskToEdit = state.activeTask.find((task) => task.id === action.payload)
-      taskToEdit.isEdit = true
+      if (taskToEdit) {
+        taskToEdit.isEdit = true
+      }
     },
     cancelEdit: (state, action) => {
       const taskToEdit = state.activeTask.find((task) => task.id === action.payload)

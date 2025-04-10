@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useDispatch } from 'react-redux';
-import { deleteTask, editTask, removeTask, startEdit } from '../store/taskSlise';
+import { deleteTask, removeTask, startEdit } from '../store/taskSlise';
 import styles from './TaskItem.module.css'
 import TaskInput from './TaskInput';
 
@@ -15,22 +15,29 @@ const TaskItem = ({task}) => {
   }
 
   return (
-    <div
-    className={styles.item}
-    >
+    <div className={styles.item}>
       <p className={styles.text}>{task.text}</p>
       <div className={styles.buttons}>
-        {task.isDeleted || <button className={styles.button} onClick={() => handleEditTask(task)}>Редактировать</button>}
+        {task.isDeleted || (
+          <button
+            className={styles.button}
+            onClick={() => handleEditTask(task)}
+          >
+            Редактировать
+          </button>
+        )}
         <button className={styles.button} onClick={() => handleDeleteTask(task)}>Удалить</button>
       </div>
-      {task.isEdit && <div className={styles.editingArea}>
+      {task.isEdit && (
+        <div className={styles.editingArea}>
           <TaskInput
-            isEditing={true}
+            isEditing
             task={task}
           />
-      </div>}
+        </div>
+      )}
     </div>
   );
 }
- 
+
 export default TaskItem;
