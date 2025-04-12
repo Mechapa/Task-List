@@ -10,8 +10,9 @@ const TaskPage = () => {
     <div>
       <h1 className={styles.title}>Активные задачи</h1>
       <TaskInput />
-      {activeTasks.map((task) =>
+      {activeTasks.map((task, index) =>
         (<TaskItem
+          index={index + 1}
           key={task.id}
           task={task}
         />)

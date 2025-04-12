@@ -10,8 +10,11 @@ const taskSlice = createSlice({
   name: "toDo",
   reducers: {
     addTask : (state, action) => {
-      state.activeTask.push(action.payload);
-      localStorage.setItem("activeTask", JSON.stringify(state.activeTask));
+      const taskExists = state.activeTask.find((task) => task.text === action.payload.text);
+      if (!taskExists) {
+        state.activeTask.push(action.payload);
+        localStorage.setItem("activeTask", JSON.stringify(state.activeTask));
+      }
     },
     deleteTask: (state, action) => {
       const taskToDelete = state.activeTask.find((task) => task.id === action.payload);
@@ -30,16 +33,6 @@ const taskSlice = createSlice({
         localStorage.setItem("deletedTask", JSON.stringify(state.deletedTask));
       }
     },
-    startEdit: (state, action) => {
-      const taskToEdit = state.activeTask.find((task) => task.id === action.payload);
-      if (taskToEdit) {
-        taskToEdit.isEdit = true;
-      }
-    },
-    cancelEdit: (state, action) => {
-      const taskToEdit = state.activeTask.find((task) => task.id === action.payload);
-      taskToEdit.isEdit = false;
-    },
     editTask: (state, action) => {
       const {id, taskText} = action.payload;
       const task = state.activeTask.find((task) => task.id === id);
@@ -53,5 +46,5 @@ const taskSlice = createSlice({
   }
 });
 
-export const { addTask, deleteTask, removeTask, editTask, startEdit, cancelEdit } = taskSlice.actions;
+export const { addTask, deleteTask, removeTask, editTask } = taskSlice.actions;
 export default taskSlice.reducer;

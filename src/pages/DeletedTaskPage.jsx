@@ -9,8 +9,9 @@ const DeletedTaskPage = () => {
     <>
       <div>
         <h1 className={styles.title}>Удаленные задачи</h1>
-        {deletedTasks.map((task) => (
+        {deletedTasks.map((task, index) => (
           <TaskItem
+            index={index + 1}
             key={task.id}
             task={task}
           />
