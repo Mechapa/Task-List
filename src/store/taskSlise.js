@@ -10,11 +10,11 @@ const taskSlice = createSlice({
   name: "toDo",
   reducers: {
     addTask : (state, action) => {
-      const taskExists = state.activeTask.find((task) => task.text === action.payload.text);
-      if (!taskExists) {
-        state.activeTask.push(action.payload);
-        localStorage.setItem("activeTask", JSON.stringify(state.activeTask));
-      }
+      // const taskExists = state.activeTask.find((task) => task.text === action.payload.text);
+      // if (!taskExists) {
+      state.activeTask.push(action.payload);
+      localStorage.setItem("activeTask", JSON.stringify(state.activeTask));
+      // }
     },
     deleteTask: (state, action) => {
       const taskToDelete = state.activeTask.find((task) => task.id === action.payload);
