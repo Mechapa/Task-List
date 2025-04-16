@@ -1,5 +1,4 @@
 import {useSelector } from "react-redux";
-import TaskInput from "../components/TaskInput";
 import TaskItem from "../components/TaskItem";
 import styles from "./TaskPage.module.css";
 
