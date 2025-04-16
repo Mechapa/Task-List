@@ -25,21 +25,13 @@ const TaskItem = ({index, task}) => {
 
   return (
     <div className={styles.item}>
-      <div>{index}</div>
+      <div>{`${index})`}</div>
       <p className={styles.text} contentEditable="true" suppressContentEditableWarning="true" onBlur={(event) => handleEditTask(event, task)}>{taskText}</p>
       <div className={styles.buttons}>
         <button className={styles.button} onClick={() => handleDeleteTask(task)}>
           <img className={styles.buttonIcon} src={trashIcon} />
         </button>
       </div>
-      {task.isEdit && (
-        <div className={styles.editingArea}>
-          <TaskInput
-            isEditing
-            task={task}
-          />
-        </div>
-      )}
     </div>
   );
 };

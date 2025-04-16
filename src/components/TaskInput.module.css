@@ -13,12 +13,16 @@
 }
 
 .field {
-  width: 200px;
-  height: 40px;
+  width: 224px;
+  height: 24px;
+  border-radius: 4px;
+  border: none;
 }
 
 .button {
-  width: 120px;
+  width: 80px;
+  border-radius: 4px;
+  border: none;
 }
 
 .field.error {

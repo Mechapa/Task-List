@@ -7,7 +7,7 @@ const DeletedTaskPage = () => {
 
   return (
     <>
-      <div>
+      <div className={styles.page}>
         <h1 className={styles.title}>Удаленные задачи</h1>
         {deletedTasks.map((task, index) => (
           <TaskItem

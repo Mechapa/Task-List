@@ -7,9 +7,8 @@ const TaskPage = () => {
   const activeTasks = useSelector((state) => state.tasks.activeTask);
 
   return (
-    <div>
+    <div className={styles.page}>
       <h1 className={styles.title}>Активные задачи</h1>
-      <TaskInput />
       {activeTasks.map((task, index) =>
         (<TaskItem
           index={index + 1}
