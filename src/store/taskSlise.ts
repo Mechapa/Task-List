@@ -1,9 +1,17 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { Task } from "../models";
+
+type TaskState = {
+  activeTask: Task[];
+  deletedTask: Task[];
+};
 
 const initialState = {
-  activeTask: JSON.parse(localStorage.getItem("activeTask")) || [],
-  deletedTask: JSON.parse(localStorage.getItem("deletedTask")) || []
+  activeTask: JSON.parse(localStorage.getItem("activeTask") || "[]") as Task[],
+  deletedTask: JSON.parse(localStorage.getItem("deletedTask") || "[]") as Task[],
 };
+
+
 
 const taskSlice = createSlice({
   initialState,
@@ -16,7 +24,7 @@ const taskSlice = createSlice({
       localStorage.setItem("activeTask", JSON.stringify(state.activeTask));
       // }
     },
-    deleteTask: (state, action) => {
+    deleteTask: (state, action: PayloadAction<string>) => {
       const taskToDelete = state.activeTask.find((task) => task.id === action.payload);
       if (taskToDelete) {
         state.deletedTask.push(taskToDelete);
@@ -39,7 +47,6 @@ const taskSlice = createSlice({
       console.log(id);
       if (task) {
         task.text = taskText;
-        task.isEdit = false;
         localStorage.setItem("activeTask", JSON.stringify(state.activeTask));
       }
     }

@@ -15,7 +15,7 @@ const TaskItem = ({index, task}) => {
 
   const handleEditTask = (event, task) => {
     if (event.target.textContent.trim()) {
-      const taskExists = activeTasks.find((task) => task.text === taskText);
+      const taskExists = activeTasks.find((task) => task.text === event.target.textContent);
       if (!taskExists) {
         setTaskText(event.target.textContent);
         dispatch(editTask({id: task.id, taskText: event.target.textContent}));
