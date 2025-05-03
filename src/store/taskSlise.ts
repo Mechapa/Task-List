@@ -6,7 +6,7 @@ type TaskState = {
   deletedTask: Task[];
 };
 
-const initialState = {
+const initialState: TaskState = {
   activeTask: JSON.parse(localStorage.getItem("activeTask") || "[]") as Task[],
   deletedTask: JSON.parse(localStorage.getItem("deletedTask") || "[]") as Task[],
 };
@@ -17,33 +17,30 @@ const taskSlice = createSlice({
   initialState,
   name: "toDo",
   reducers: {
-    addTask : (state, action) => {
-      // const taskExists = state.activeTask.find((task) => task.text === action.payload.text);
-      // if (!taskExists) {
+    addTask : (state: TaskState, action: PayloadAction<Task>) => {
       state.activeTask.push(action.payload);
       localStorage.setItem("activeTask", JSON.stringify(state.activeTask));
-      // }
     },
-    deleteTask: (state, action: PayloadAction<string>) => {
-      const taskToDelete = state.activeTask.find((task) => task.id === action.payload);
+    deleteTask: (state: TaskState, action: PayloadAction<string>) => {
+      const taskToDelete = state.activeTask.find((task: Task) => task.id === action.payload);
       if (taskToDelete) {
         state.deletedTask.push(taskToDelete);
-        state.activeTask = state.activeTask.filter((task) => task.id !== action.payload);
+        state.activeTask = state.activeTask.filter((task: Task) => task.id !== action.payload);
         taskToDelete.isDeleted = true;
         localStorage.setItem("activeTask", JSON.stringify(state.activeTask));
         localStorage.setItem("deletedTask", JSON.stringify(state.deletedTask));
       }
     },
-    removeTask: (state, action) => {
-      const taskToDelete = state.deletedTask.find((task) => task.id === action.payload);
+    removeTask: (state: TaskState, action:PayloadAction<string>) => {
+      const taskToDelete = state.deletedTask.find((task: Task) => task.id === action.payload);
       if (taskToDelete) {
-        state.deletedTask = state.deletedTask.filter((task) => task.id !== action.payload);
+        state.deletedTask = state.deletedTask.filter((task: Task) => task.id !== action.payload);
         localStorage.setItem("deletedTask", JSON.stringify(state.deletedTask));
       }
     },
-    editTask: (state, action) => {
+    editTask: (state: TaskState, action:PayloadAction<{id: string; taskText: string}>) => {
       const {id, taskText} = action.payload;
-      const task = state.activeTask.find((task) => task.id === id);
+      const task = state.activeTask.find((task: Task) => task.id === id);
       console.log(id);
       if (task) {
         task.text = taskText;

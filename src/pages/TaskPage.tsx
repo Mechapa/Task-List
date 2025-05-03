@@ -1,9 +1,10 @@
 import {useSelector } from "react-redux";
 import TaskItem from "../components/TaskItem";
 import styles from "./TaskPage.module.css";
+import { RootState } from "../store/store";
 
 const TaskPage = () => {
-  const activeTasks = useSelector((state) => state.tasks.activeTask);
+  const activeTasks = useSelector((state: RootState) => state.tasks.activeTask);
 
   return (
     <div className={styles.page}>
