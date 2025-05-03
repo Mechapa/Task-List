@@ -3,17 +3,23 @@ import { useDispatch, useSelector } from "react-redux";
 import { deleteTask, editTask, removeTask } from "../store/taskSlise";
 import styles from "./TaskItem.module.css";
 import trashIcon from "../assets/trash.svg";
+import { Task } from "../models";
 
-const TaskItem = ({index, task}) => {
-  const [taskText, setTaskText] = useState(task.text);
-  const activeTasks = useSelector((state) => state.tasks.activeTask);
+type TaskItemProps {
+  index: number;
+  task: Task;
+}
+
+const TaskItem: React.FC<TaskItemProps> = ({index, task}) => {
+  const [taskText, setTaskText] = useState<string>(task.text);
+  const activeTasks = useSelector((state: any) => state.tasks.activeTask);
   const dispatch = useDispatch();
-  const handleDeleteTask = (task) => {
+  const handleDeleteTask = (task: Task) => {
     task.isDeleted ? dispatch(removeTask(task.id)) : dispatch(deleteTask(task.id));
   };
 
 
-  const handleEditTask = (event, task) => {
+  const handleEditTask = (event: React.FocusEvent<HTMLParagraphElement>, task: Task) => {
     if (event.target.textContent.trim()) {
       const taskExists = activeTasks.find((task) => task.text === event.target.textContent);
       if (!taskExists) {
@@ -31,7 +37,7 @@ const TaskItem = ({index, task}) => {
   return (
     <div className={styles.item}>
       <div>{`${index})`}</div>
-      <p className={styles.text} contentEditable="true" suppressContentEditableWarning="true" onBlur={(event) => handleEditTask(event, task)}>{taskText}</p>
+      <p className={styles.text} contentEditable="true" suppressContentEditableWarning={true} onBlur={(event) => handleEditTask(event, task)}>{taskText}</p>
       <div className={styles.buttons}>
         <button className={styles.button} onClick={() => handleDeleteTask(task)}>
           <img className={styles.buttonIcon} src={trashIcon} />
