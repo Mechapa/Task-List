@@ -1,8 +1,8 @@
 import { ChangeEvent, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { addTask} from "../store/taskSlise";
+import { addTask} from "../../store/taskSlise";
 import styles from "./TaskInput.module.css";
-import { RootState } from "../store/store";
+import { RootState } from "../../store/store";
 
 const TaskInput: React.FC = () => {
   const [taskText, setTaskText] = useState<string>("");
@@ -39,13 +39,13 @@ const TaskInput: React.FC = () => {
     <div className={styles.input}>
       <input
         className={`${styles.field} ${hasError ? styles.error : ""}`}
-        placeholder={"Введите текст задачи"}
+        placeholder="Введите текст задачи"
         type="text"
         value={taskText}
         onChange={handlerChangeText}
       />
       <button className={styles.button} onClick={handleSubmitTask}>
-        {"Добавить"}
+        "Добавить"
       </button>
     </div>
   );

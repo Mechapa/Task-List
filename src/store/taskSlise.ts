@@ -41,7 +41,6 @@ const taskSlice = createSlice({
     editTask: (state: TaskState, action:PayloadAction<{id: string; taskText: string}>) => {
       const {id, taskText} = action.payload;
       const task = state.activeTask.find((task: Task) => task.id === id);
-      console.log(id);
       if (task) {
         task.text = taskText;
         localStorage.setItem("activeTask", JSON.stringify(state.activeTask));

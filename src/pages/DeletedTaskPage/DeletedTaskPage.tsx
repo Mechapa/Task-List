@@ -1,8 +1,8 @@
 import { useSelector } from "react-redux";
-import TaskItem from "../components/TaskItem";
+import TaskItem from "../../components/TaskItem/TaskItem";
 import styles from "./DeletedTaskPage.module.css";
-import { Task } from "../models";
-import { RootState } from "../store/store";
+import { Task } from "../../models";
+import { RootState } from "../../store/store";
 
 const DeletedTaskPage = () => {
   const deletedTasks = useSelector((state: RootState) => state.tasks.deletedTask);

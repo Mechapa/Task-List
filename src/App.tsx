@@ -1,13 +1,15 @@
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import TaskPage from "./pages/TaskPage";
-import DeletedTaskPage from "./pages/DeletedTaskPage";
-import Sidebar from "./components/Sidebar";
+import TaskPage from "./pages/TaskPage/TaskPage";
+import DeletedTaskPage from "./pages/DeletedTaskPage/DeletedTaskPage";
+import Sidebar from "./components/Sidebar/Sidebar";
 import styles from "./App.module.css";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+
+
 function App() {
 
   return (
     <>
-      <Router>
+      <BrowserRouter>
         <div className={styles.app}>
           <Sidebar />
           <Routes>
@@ -15,7 +17,7 @@ function App() {
             <Route element={<DeletedTaskPage />} path="/deleted" />
           </Routes>
         </div>
-      </Router>
+      </BrowserRouter>
     </>
   );
 }

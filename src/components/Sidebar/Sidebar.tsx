@@ -1,5 +1,5 @@
-import Navigation from "./Navigation";
-import TaskInput from "./TaskInput";
+import Navigation from "../Navigation/Navigation";
+import TaskInput from "../TaskInput/TaskInput";
 import styles from "./Sidebar.module.css";
 
 const Sidebar = () => {

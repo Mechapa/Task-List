@@ -1,9 +1,10 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { deleteTask, editTask, removeTask } from "../store/taskSlise";
+import { deleteTask, editTask, removeTask } from "../../store/taskSlise";
 import styles from "./TaskItem.module.css";
-import trashIcon from "../assets/trash.svg";
-import { Task } from "../models";
+import trashIcon from "../../assets/trash.svg";
+import { Task } from "../../models";
+import { RootState } from "../../store/store";
 
 type TaskItemProps = {
   index: number;
@@ -12,7 +13,7 @@ type TaskItemProps = {
 
 const TaskItem: React.FC<TaskItemProps> = ({index, task}) => {
   const [taskText, setTaskText] = useState<string>(task.text);
-  const activeTasks = useSelector((state: any) => state.tasks.activeTask);
+  const activeTasks = useSelector((state: RootState) => state.tasks.activeTask);
   const dispatch = useDispatch();
   const handleDeleteTask = (task: Task) => {
     task.isDeleted ? dispatch(removeTask(task.id)) : dispatch(deleteTask(task.id));
@@ -21,7 +22,7 @@ const TaskItem: React.FC<TaskItemProps> = ({index, task}) => {
 
   const handleEditTask = (event: React.FocusEvent<HTMLParagraphElement>, task: Task) => {
     if (event.target.textContent?.trim()) {
-      const taskExists = activeTasks.find((task:any) => task.text === event.target.textContent);
+      const taskExists = activeTasks.find((task:Task) => task.text === event.target.textContent);
       if (!taskExists) {
         setTaskText(event.target.textContent);
         dispatch(editTask({id: task.id, taskText: event.target.textContent}));
