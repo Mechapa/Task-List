@@ -8,11 +8,13 @@
   border: 1px solid black;
   padding: 8px;
   justify-content: space-between;
+  min-height: 56px;
 }
 
 .text {
   width: 700px;
   text-align: start;
+  font-size: 15px;
 }
 
 .button {

@@ -9,7 +9,8 @@
 .input {
   display: flex;
   gap: 8px;
-  justify-content: center
+  justify-content: center;
+  position: "relative"
 }
 
 .field {
@@ -28,4 +29,13 @@
 .field.error {
   border-color: red;
   animation: shake 0.5s ease-in-out;
+}
+
+.errorMessage {
+  position: absolute;
+  color: white;
+  padding: 5px 10px;
+  border-radius: "4px";
+  white-space: "nowrap";
+  z-index: 1000;
 }

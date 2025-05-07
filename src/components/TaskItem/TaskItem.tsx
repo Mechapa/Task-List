@@ -13,6 +13,8 @@ type TaskItemProps = {
 
 const TaskItem: React.FC<TaskItemProps> = ({index, task}) => {
   const [taskText, setTaskText] = useState<string>(task.text);
+  const [isEditing, setIsEditing] = useState<boolean>(false);
+  const [inputText, setInputText] = useState<string>(taskText); // Состояние для текста
   const activeTasks = useSelector((state: RootState) => state.tasks.activeTask);
   const dispatch = useDispatch();
   const handleDeleteTask = (task: Task) => {
@@ -20,25 +22,39 @@ const TaskItem: React.FC<TaskItemProps> = ({index, task}) => {
   };
 
 
-  const handleEditTask = (event: React.FocusEvent<HTMLParagraphElement>, task: Task) => {
-    if (event.target.textContent?.trim()) {
-      const taskExists = activeTasks.find((task:Task) => task.text === event.target.textContent);
+  const handleEditTask = (value: string, task: Task) => {
+    if (value?.trim()) {
+      const taskExists = activeTasks.find((task:Task) => task.text === value);
       if (!taskExists) {
-        setTaskText(event.target.textContent);
-        dispatch(editTask({id: task.id, taskText: event.target.textContent}));
+        setTaskText(value);
+        dispatch(editTask({id: task.id, taskText: value}));
       } else {
-        event.target.textContent = taskText;
+        value = taskText;
       }
     }
     else {
-      event.target.textContent = taskText;
+      value = taskText;
     };
+    setIsEditing(false)
   };
 
   return (
     <div className={styles.item}>
       <div>{`${index})`}</div>
-      <p className={styles.text} contentEditable={task.isDeleted? "false" : "true"} suppressContentEditableWarning={true} onBlur={(event) => handleEditTask(event, task)}>{taskText}</p>
+      <div>
+      {isEditing ? (
+        <input
+          className={styles.text}
+          type="text"
+          value={inputText}
+          onChange={(e) => setInputText(e.target.value)}
+          onBlur={(e) => handleEditTask(e.target.value, task)} 
+          autoFocus
+        />
+      ) : (
+        <p className={styles.text} onClick={() => setIsEditing(true)}>{taskText}</p>
+      )}
+    </div>
       <div className={styles.buttons}>
         <button className={styles.button} onClick={() => handleDeleteTask(task)}>
           <img className={styles.buttonIcon} src={trashIcon} />
