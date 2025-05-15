@@ -1,8 +1,8 @@
-import TaskPage from "./pages/TaskPage/TaskPage";
-import DeletedTaskPage from "./pages/DeletedTaskPage/DeletedTaskPage";
-import Sidebar from "./components/Sidebar/Sidebar";
 import styles from "./App.module.css";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { Sidebar } from "./components/Sidebar";
+import { TaskPage } from "./pages/TaskPage";
+import { DeletedTaskPage } from "./pages/DeletedTaskPage";
 
 
 function App() {
