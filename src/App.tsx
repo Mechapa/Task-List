@@ -5,7 +5,7 @@ import { TaskPage } from "./pages/TaskPage";
 import { DeletedTaskPage } from "./pages/DeletedTaskPage";
 
 
-function App() {
+const App = () => {
 
   return (
     <>
